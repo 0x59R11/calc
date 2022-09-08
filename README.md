@@ -9,6 +9,13 @@
 - [X] Available 4 number systems (dec, hex, oct, bin)
 
 
+![](https://raw.githubusercontent.com/0x59R11/calc/main/images/dec_to_dec.png)
+
+![](https://raw.githubusercontent.com/0x59R11/calc/main/images/hex_to_bin.png)
+
+![](https://raw.githubusercontent.com/0x59R11/calc/main/images/oct_to_dec.png)
+
+
 ## Installation
 1. Install & setup requires tools
 2. Build .OBJ files
