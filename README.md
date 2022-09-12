@@ -7,6 +7,7 @@
 - [X] Input number can be negative (start with '-')
 - [ ] Negative result can be shown with '-'
 - [X] Available 4 number systems (dec, hex, oct, bin)
+- [X] Shows: sum, difference, multiplication, division, remainder of division
 
 
 ![](https://raw.githubusercontent.com/0x59R11/calc/main/images/dec_to_dec.png)
