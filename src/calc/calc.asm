@@ -41,6 +41,7 @@ data SEGMENT PARA USE16 PUBLIC 'data'
 	subNStr DB " - ", 24h
 	mulNStr DB " * ", 24h
 	divNStr DB " / ", 24h
+	rdivNStr DB " % ", 24h
 	
 	resStr DB " = ", 24h
 	
@@ -68,6 +69,7 @@ data SEGMENT PARA USE16 PUBLIC 'data'
 	subN DW ? ; num1 - num2
 	mulN DW ? ; num1 * num2
 	divN DW ? ; num1 / num2
+	rdivN DW ? ; num1 % num2
 	
 data ENDS
 
@@ -440,6 +442,7 @@ code SEGMENT PARA USE16 PUBLIC 'code'
 		xor DX, DX
 		div WORD PTR [num2]	
 		mov WORD PTR [divN], AX
+		mov WORD PTR [rdivN], DX
 		
 		
 		invoke parsetostr, WORD PTR [divN], offset resultStr, WORD PTR [resultFormatter]
@@ -460,6 +463,37 @@ code SEGMENT PARA USE16 PUBLIC 'code'
 		
 		mov DX, offset resultStr
 		int 21h
+		
+		
+		; Write new line
+		mov AH, 2h		
+		mov DL, 0Dh
+		int 21h
+		
+		mov DL, 0Ah
+		int 21h
+		nop
+		
+		
+		invoke parsetostr, WORD PTR [rdivN], offset resultStr, WORD PTR [resultFormatter]
+		
+		; Output rdiv result
+		mov AH, 9h
+		mov DX, offset num1FormattedStr
+		int 21h
+		
+		mov DX, offset rdivNStr
+		int 21h
+		
+		mov DX, offset num2FormattedStr
+		int 21h
+		
+		mov DX, offset resStr
+		int 21h
+		
+		mov DX, offset resultStr
+		int 21h
+		
 		
 		jmp skip_output_devide_by_zero_error
 		
