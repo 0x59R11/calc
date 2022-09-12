@@ -439,6 +439,7 @@ code SEGMENT PARA USE16 PUBLIC 'code'
 		mov AX, WORD PTR [num1]
 		xor DX, DX
 		div WORD PTR [num2]	
+		mov WORD PTR [divN], AX
 		
 		
 		invoke parsetostr, WORD PTR [divN], offset resultStr, WORD PTR [resultFormatter]
