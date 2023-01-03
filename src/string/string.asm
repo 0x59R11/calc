@@ -68,14 +68,19 @@ code SEGMENT PARA USE16 PUBLIC 'code'
 		add DI, AX 				; DI += strlen
 		
 		xor CX, CX
+		mov BX, 1h
 		
 	strsum_loop1:
 		mov CL, BYTE PTR [SI]
 		add AX, CX
+		jno strsum_loop2 		; If sum of AX and CX overloaded
+		inc BX
+	strsum_loop2:
 		inc SI
 		cmp DI, SI
 		jne  strsum_loop1
 		
+		mul BX
 		
 	pop CX
 	pop DI
